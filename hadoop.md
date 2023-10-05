@@ -29,7 +29,7 @@ sudo apt install default-jdk
 
 
 ```bash
-wget https://dlcdn.apache.org/hadoop/common/hadoop-3.3.1/hadoop-3.3.1.tar.gz
+wget https://dlcdn.apache.org/hadoop/common/hadoop-3.3.6/hadoop-3.3.6.tar.gz
 
 sudo mkdir /usr/local/hadoop && sudo tar -zxf hadoop-*.tar.gz -C /usr/local/hadoop --strip-components 1
 
@@ -62,7 +62,7 @@ sudo vim /usr/local/hadoop/etc/hadoop/core-site.xml
 <configuration>
    <property>
       <name>fs.default.name</name>
-      <value>hdfs://localhost:9000</value>
+      <value>hdfs://main:9000</value>
    </property>
 </configuration>
 ```
@@ -72,7 +72,7 @@ sudo vim /usr/local/hadoop/etc/hadoop/hdfs-site.xml
 <configuration>
    <property>
       <name>dfs.replication</name>
-      <value>1</value>
+      <value>3</value>
    </property>
    <property>
       <name>dfs.name.dir</name>
@@ -91,14 +91,25 @@ sudo chown -R hadoop:hadoop /hadoop
 ```
 
 ```bash
+sudo vim /usr/local/hadoop/etc/hadoop/workers
+
+main
+worker1
+worker2
+```
+
+```bash
 ssh-keygen
 cat .ssh/id_rsa.pub > .ssh/authorized_keys
 ```
 
 ```bash
+su - hadoop
+sudo scp /home/hadoop/.ssh/id_rsa.pub team3@worker1:/home/hadoop/.ssh/authorized_keys
+sudo scp /home/hadoop/.ssh/id_rsa.pub team3@worker2:/home/hadoop/.ssh/authorized_keys
+
 /usr/local/hadoop/bin/hdfs namenode -format
 /usr/local/hadoop/sbin/start-dfs.sh
-/usr/local/hadoop/sbin/start-yarn.sh
 ```
 
 ## Создание файла
@@ -111,7 +122,7 @@ hdfs dfs -put test.txt /tmp
 Смотрим размер через утилиту hdfs
 ```bash
 hdfs dfs -du -h /tmp
-14  14  /tmp/test.txt
+13  39  /tmp/test.txt
 ```
 
 Смотрим размер в хостовой файловой системе
