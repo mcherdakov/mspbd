@@ -18,9 +18,9 @@ sudo netfilter-persistent save
 
 ```bash
 sudo vim /etc/hosts
-192.168.1.15 haddop1
-192.168.1.20 haddop2
-192.168.1.25 haddop3
+10.0.10.5 main
+10.0.10.11 worker1
+10.0.10.12 worker2
 ```
 
 ```bash
