@@ -93,9 +93,9 @@ sudo chown -R hadoop:hadoop /hadoop
 ```bash
 sudo vim /usr/local/hadoop/etc/hadoop/workers
 
-main
 worker1
 worker2
+localhost
 ```
 
 ```bash
