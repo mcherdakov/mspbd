@@ -124,6 +124,10 @@ du -ah .
 1.1M    .
 ```
 
+```bash
+hdfs dfs -put /tmp/keks /data
+```
+
 После запуска:
 ```bash
 main
@@ -156,15 +160,15 @@ Filesystem     1M-blocks   Used Available Use% Mounted on
 1.6M    .
 ```
 
+Можно видеть, что теперь edits_* занимают сильно больше места
+
 Профиль CPU и памяти во время исполнения:
 
 main
-![](bigfile_media/main_small.jpg)
+![](bigfile_media/main_small.png)
 
 worker1
 ![](bigfile_media/worker1_small.jpg)
 
 worker2
 ![](bigfile_media/worker2_small.jpg)
-
-Можно видеть, что теперь edits_* занимают сильно больше места
