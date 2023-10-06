@@ -73,6 +73,17 @@ Filesystem     1M-blocks   Used Available Use% Mounted on
 1.1M    .
 ```
 
+Профиль CPU и памяти во время исполнения:
+
+main
+![](bigfile_media/main_big.jpg)
+
+worker1
+![](bigfile_media/worker1_big.jpg)
+
+worker2
+![](bigfile_media/worker2_big.jpg)
+
 +1.5GB на всех нодах
 
 ## Загрузка маленьких файлов
@@ -144,5 +155,16 @@ Filesystem     1M-blocks   Used Available Use% Mounted on
 4.0K    ./seen_txid
 1.6M    .
 ```
+
+Профиль CPU и памяти во время исполнения:
+
+main
+![](bigfile_media/main_small.jpg)
+
+worker1
+![](bigfile_media/worker1_small.jpg)
+
+worker2
+![](bigfile_media/worker2_small.jpg)
 
 Можно видеть, что теперь edits_* занимают сильно больше места
