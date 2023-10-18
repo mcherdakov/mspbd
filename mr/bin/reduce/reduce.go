@@ -37,7 +37,7 @@ func run() error {
 	}
 
 	for region, count := range regionMap {
-		fmt.Println(region, count)
+		fmt.Printf("%s, %d\n", region, count)
 	}
 
 	return nil
