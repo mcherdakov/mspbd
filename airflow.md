@@ -27,6 +27,8 @@ airflow standalone
 ![telegram-cloud-photo-size-2-5201748447282191363-y](https://github.com/mcherdakov/mspbd/assets/96630344/e7e1ce91-8263-4f2f-a0c9-bfa4a7765e93)
 
 
+
+
 ### Загрузка DAG
 
 Настройка на хосте с Airflow:
@@ -34,6 +36,7 @@ airflow standalone
 airflow@airflow:~/airflow$ cat airflow.cfg  | grep dags_folder
 dags_folder = /home/airflow/airflow/dags
 airflow@airflow:~/airflow$ mkdir dags
+airflow@airflow:~/airflow$ pip install apache-airflow-providers-ssh
 ```
 
 Перенос DAG'а с локальной машины на хост с Airflow:
