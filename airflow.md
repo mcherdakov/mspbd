@@ -43,3 +43,7 @@ airflow@airflow:~/airflow$ pip install apache-airflow-providers-ssh
 ```bash
 scp -i /home/mb/.ssh/yc-cloud-id-b1gtqeqluh845u5l39v6-bagishovmikail /tmp/dag.py bagishovmikail@51.250.30.154:/tmp/
 ```
+
+Как выглядит в UI:
+<img width="1662" alt="image" src="https://github.com/mcherdakov/mspbd/assets/96630344/0efc9d00-7e72-4f76-a4e8-20796e5792ea">
+
