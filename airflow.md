@@ -117,3 +117,10 @@ Traceback (most recent call last):
     raise AirflowException(f"SSH operator error: exit status = {exit_status}")
 airflow.exceptions.AirflowException: SSH operator error: exit status = 6
 ```
+
+Меняем в DAG'е URL:
+```bash
+**t1_bash = """
+curl -o out_file.zip 'https://storage.yandexcloud.net/mikailbaghadoop/archive.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=YCAJEznBSD4cCzr9wQkM7lYRV%2F20231222%2Fru-central1%2Fs3%2Faws4_request&X-Amz-Date=20231222T204336Z&X-Amz-Expires=2592000&X-Amz-Signature=XXX-Amz-SignedHeaders=host'
+"""**
+```
