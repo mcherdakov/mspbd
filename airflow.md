@@ -124,3 +124,19 @@ airflow.exceptions.AirflowException: SSH operator error: exit status = 6
 curl -o out_file.zip 'https://storage.yandexcloud.net/mikailbaghadoop/archive.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=YCAJEznBSD4cCzr9wQkM7lYRV%2F20231222%2Fru-central1%2Fs3%2Faws4_request&X-Amz-Date=20231222T204336Z&X-Amz-Expires=2592000&X-Amz-Signature=XXX-Amz-SignedHeaders=host'
 """**
 ```
+
+Перезапускаем DAG и ловим новую ошибку :) :
+```
+[2023-12-22, 20:49:42 UTC] {taskinstance.py:2699} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 433, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/providers/ssh/operators/ssh.py", line 178, in execute
+    result = self.run_ssh_client_command(ssh_client, self.command, context=context)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/providers/ssh/operators/ssh.py", line 163, in run_ssh_client_command
+    exit_status, agg_stdout, agg_stderr = self.hook.exec_ssh_client_command(
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/providers/ssh/hooks/ssh.py", line 549, in exec_ssh_client_command
+    raise AirflowException("SSH command timed out")
+airflow.exceptions.AirflowException: SSH command timed out
+```
+
