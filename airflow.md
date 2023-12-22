@@ -48,10 +48,47 @@ scp -i /home/mb/.ssh/yc-cloud-id-b1gtqeqluh845u5l39v6-bagishovmikail /tmp/dag.py
 <img width="1662" alt="image" src="https://github.com/mcherdakov/mspbd/assets/96630344/0efc9d00-7e72-4f76-a4e8-20796e5792ea">
 
 
+### Запуск DAG'а
+
+Жмем на скрине выше на кнопочку Trigger DAG и получаем ошибку:
+```bash
+[2023-12-22, 20:21:30 UTC] {taskinstance.py:2699} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 433, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/providers/ssh/operators/ssh.py", line 177, in execute
+    with self.get_ssh_client() as ssh_client:
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/providers/ssh/operators/ssh.py", line 142, in get_ssh_client
+    return self.hook.get_conn()
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/providers/ssh/hooks/ssh.py", line 346, in get_conn
+    for attempt in Retrying(
+  File "/home/airflow/.local/lib/python3.10/site-packages/tenacity/__init__.py", line 347, in __iter__
+    do = self.iter(retry_state=retry_state)
+  File "/home/airflow/.local/lib/python3.10/site-packages/tenacity/__init__.py", line 325, in iter
+    raise retry_exc.reraise()
+  File "/home/airflow/.local/lib/python3.10/site-packages/tenacity/__init__.py", line 158, in reraise
+    raise self.last_attempt.result()
+  File "/usr/lib/python3.10/concurrent/futures/_base.py", line 451, in result
+    return self.__get_result()
+  File "/usr/lib/python3.10/concurrent/futures/_base.py", line 403, in __get_result
+    raise self._exception
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/providers/ssh/hooks/ssh.py", line 353, in get_conn
+    client.connect(**connect_kwargs)
+  File "/home/airflow/.local/lib/python3.10/site-packages/paramiko/client.py", line 485, in connect
+    self._auth(
+  File "/home/airflow/.local/lib/python3.10/site-packages/paramiko/client.py", line 819, in _auth
+    raise SSHException("No authentication methods available")
+paramiko.ssh_exception.SSHException: No authentication methods available
+```
+
 
 ### Починка DAG'а
 
-Для начала мы перезапустили Airflow, чтобы Admin->Connections пророс тип Summer Flow - SSH.
+Хотим починить поход по ssh. Для начала мы перезапустили Airflow, чтобы Admin->Connections пророс тип Summer Flow - SSH.
 
-Теперь заполняем Admin->Connections:
+Теперь научим Airflow ходить на localhost по ssh:
+```bash
+ssh-keygen
+cp ~/.ssh/id_rsa.pub ~/.ssh/authorized_keys
+```
 
