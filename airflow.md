@@ -169,3 +169,8 @@ Traceback (most recent call last):
     raise AirflowException(f"SSH operator error: exit status = {exit_status}")
 airflow.exceptions.AirflowException: SSH operator error: exit status = 127
 ```
+
+Видим, что не хватает unzip, ставим его:
+```bash
+sudo apt install unzip
+```
