@@ -94,3 +94,26 @@ cp ~/.ssh/id_rsa.pub ~/.ssh/authorized_keys
 
 Варим нвоый Connection:
 <img width="1645" alt="image" src="https://github.com/mcherdakov/mspbd/assets/96630344/b388edf7-610a-46b3-9e55-90b6dd44ace1">
+
+Перезапускаем DAG и получаем новую ошибку:
+```bash
+[2023-12-22, 20:40:38 UTC] {ssh.py:478} INFO - Running command: 
+curl -o out_file.zip 'URL'
+[2023-12-22, 20:40:38 UTC] {ssh.py:529} WARNING -   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+[2023-12-22, 20:40:38 UTC] {ssh.py:529} WARNING -                                  Dload  Upload   Total   Spent    Left  Speed
+[2023-12-22, 20:40:38 UTC] {ssh.py:529} WARNING - 
+[2023-12-22, 20:40:38 UTC] {ssh.py:529} WARNING -   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+[2023-12-22, 20:40:38 UTC] {ssh.py:529} WARNING - curl: (6) Could no
+[2023-12-22, 20:40:38 UTC] {ssh.py:529} WARNING - t resolve host: URL
+[2023-12-22, 20:40:38 UTC] {taskinstance.py:2699} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 433, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/providers/ssh/operators/ssh.py", line 178, in execute
+    result = self.run_ssh_client_command(ssh_client, self.command, context=context)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/providers/ssh/operators/ssh.py", line 166, in run_ssh_client_command
+    self.raise_for_status(exit_status, agg_stderr, context=context)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/providers/ssh/operators/ssh.py", line 160, in raise_for_status
+    raise AirflowException(f"SSH operator error: exit status = {exit_status}")
+airflow.exceptions.AirflowException: SSH operator error: exit status = 6
+```
