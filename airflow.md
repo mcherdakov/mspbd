@@ -152,3 +152,20 @@ t1 = SSHOperator(ssh_conn_id='ssh_default',
 Перезапускаем DAG и видим, что первый шаг пройден:
 
 <img width="571" alt="image" src="https://github.com/mcherdakov/mspbd/assets/96630344/0c7762a9-1289-445f-90c1-0f1a71e64dcb">
+
+Следующая ошибка в очереди:
+```bash
+[2023-12-22, 20:56:16 UTC] {ssh.py:478} INFO - Running command: unzip -o out_file.zip
+[2023-12-22, 20:56:16 UTC] {ssh.py:529} WARNING - bash: line 1: unzip: command not found
+[2023-12-22, 20:56:16 UTC] {taskinstance.py:2699} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 433, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/providers/ssh/operators/ssh.py", line 178, in execute
+    result = self.run_ssh_client_command(ssh_client, self.command, context=context)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/providers/ssh/operators/ssh.py", line 166, in run_ssh_client_command
+    self.raise_for_status(exit_status, agg_stderr, context=context)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/providers/ssh/operators/ssh.py", line 160, in raise_for_status
+    raise AirflowException(f"SSH operator error: exit status = {exit_status}")
+airflow.exceptions.AirflowException: SSH operator error: exit status = 127
+```
