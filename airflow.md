@@ -47,3 +47,11 @@ scp -i /home/mb/.ssh/yc-cloud-id-b1gtqeqluh845u5l39v6-bagishovmikail /tmp/dag.py
 Как выглядит в UI:
 <img width="1662" alt="image" src="https://github.com/mcherdakov/mspbd/assets/96630344/0efc9d00-7e72-4f76-a4e8-20796e5792ea">
 
+
+
+### Починка DAG'а
+
+Для начала мы перезапустили Airflow, чтобы Admin->Connections пророс тип Summer Flow - SSH.
+
+Теперь заполняем Admin->Connections:
+
