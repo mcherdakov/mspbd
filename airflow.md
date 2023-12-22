@@ -150,4 +150,5 @@ t1 = SSHOperator(ssh_conn_id='ssh_default',
 ```
 
 Перезапускаем DAG и видим, что первый шаг пройден:
+
 <img width="571" alt="image" src="https://github.com/mcherdakov/mspbd/assets/96630344/0c7762a9-1289-445f-90c1-0f1a71e64dcb">
