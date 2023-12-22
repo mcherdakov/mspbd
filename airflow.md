@@ -92,3 +92,5 @@ ssh-keygen
 cp ~/.ssh/id_rsa.pub ~/.ssh/authorized_keys
 ```
 
+Варим нвоый Connection:
+<img width="1645" alt="image" src="https://github.com/mcherdakov/mspbd/assets/96630344/b388edf7-610a-46b3-9e55-90b6dd44ace1">
