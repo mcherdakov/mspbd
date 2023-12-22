@@ -140,3 +140,12 @@ Traceback (most recent call last):
 airflow.exceptions.AirflowException: SSH command timed out
 ```
 
+Выставляем в DAG'е явный таймаут для ssh:
+```bash
+t1 = SSHOperator(ssh_conn_id='ssh_default',
+                 task_id='get_dataset_from_web',
+                 command=t1_bash,
+                 cmd_timeout=600,
+                 dag=dag)
+```
+
